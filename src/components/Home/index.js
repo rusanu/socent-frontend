@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import Loading from '../Loading'
 const styles = {
   container: {
@@ -17,6 +17,7 @@ function HomeUI(props) {
 HomeUI.propTypes = {
 
 };
+
 function Home(props) {
   return (
     <div style={styles.container}>
@@ -29,7 +30,5 @@ function Home(props) {
     </div>
   );
 }
-Home.propTypes = {
-  isLoading: PropTypes.bool.isRequired
-};
+
 export default Home;
