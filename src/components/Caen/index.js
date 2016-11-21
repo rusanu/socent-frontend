@@ -24,7 +24,7 @@ const Caen = (props: Props) => {
         dataSource={props.dataSource}
         dataSourceConfig={dataSourceConfig}
         onChange={props.handleTextFieldChange}
-        value={props.caenCode === null ? '' : props.caenCode}
+        searchText={props.caenCode === null ? '' : props.caenCode}
       />
       <br /><br />
     </div>
