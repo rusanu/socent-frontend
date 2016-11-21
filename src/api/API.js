@@ -2,6 +2,7 @@
 
 import Enterprise from './Enterprise';
 import Caens from './Caens';
+import Domains from './Domains';
 import { APIVersions } from './Entity';
 
 import type { APIVersion } from './Entity';
@@ -23,5 +24,8 @@ export default class API {
   }
   getCaens(): Caens {
     return new Caens(this._baseURI, this._version);
+  }
+  getDomains(): Domains {
+    return new Domains(this._baseURI, this._version);
   }
 }

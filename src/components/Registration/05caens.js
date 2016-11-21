@@ -1,4 +1,4 @@
-import React from 'react'
+  import React from 'react'
 // import SelectField from '../SuperSelectField'
 import Caen from '../Caen'
 import { RaisedButton } from 'material-ui';
@@ -12,29 +12,16 @@ import { lightBlue900 } from 'material-ui/styles/colors'
 //   lineHeight: 'normal'
 // }
 const Caens = (props) => {
-  // const caenSecundary = props.caenSecondary.map((Element, i) => {
-  //     return <Element key={ i } index={ i } />
-  //   });
-  // const caensNodeList = props.caens.map((c) => {
-  //   const caenCode = c['clasz']
-  //   const caenDescription = c['description']
-  //   const caenID = c['id']
-  //     return (
-  //       <div key={caenID} value={c} label={caenDescription} style={menuItemStyle}>
-  //         <div>
-  //           <span style={{ fontWeight: 'bold' }}>{caenDescription}</span><br />
-  //           <span style={{ }}>{caenCode}</span>
-  //         </div>
-  //       </div>
-  //     )
-  // })
+  const { enterprise } = props
+  const caenPrimary = `${enterprise.primaryIndustryClassification.clasz}: ${enterprise.primaryIndustryClassification.description}`
   return (
+
     <div>
       <br />
       <h6>Alege Codul CAEN Principal</h6>
       <Caen
         maxSearchResults={5}
-        caenCode={props.caenPrimary}
+        caenCode={caenPrimary}
         dataSource={props.caens}
         name='principal'
         handleTextFieldChange={props.handleTextFieldChange}
@@ -48,12 +35,22 @@ const Caens = (props) => {
         onTouchTap={props.addCaenComponent}
         icon={<ContentAddCircleOutline color='white' />}
       />
-      {props.caenSecondary.map((caen, i) => {
-        return <Caen
-          key={`secondary-${i}`}
-          caenCode={caen}
-          maxSearchResults={5}
-          dataSource={props.caens}/>
+      {enterprise.secondaryIndustryClassifications.map((caen, i) => {
+          if (caen !== null){
+            let obj = props.caens.find(c => c.clasz === caen)
+            return <Caen
+              key={`secondary-${i}`}
+              caenCode={obj.description}
+              maxSearchResults={5}
+              dataSource={props.caens}/>
+          } else {
+            return <Caen
+              key={`secondary-${i}`}
+              caenCode=''
+              maxSearchResults={5}
+              dataSource={props.caens}/>
+          }
+
         })
       }
 

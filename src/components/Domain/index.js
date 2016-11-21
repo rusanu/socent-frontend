@@ -5,12 +5,12 @@ type Props = {
   maxSearchResults: number,
   dataSource: Array<Object>,
   name: String,
-  caenCode: String,
+  domainCode: String,
   handleTextFieldChange:(e: Event) => void
 }
 const dataSourceConfig = {
   text: 'description',
-  value: 'clasz',
+  value: 'id',
 };
 const Domain = (props: Props) => {
   return (
@@ -18,13 +18,13 @@ const Domain = (props: Props) => {
       <AutoComplete
         fullWidth={true}
         listStyle={{width: 'inherit'}}
-        floatingLabelText='Cautati dupa descrierea clasificarii'
+        floatingLabelText='Cautati dupa descrierea domeniului'
         filter={AutoComplete.caseInsensitiveFilter}
         maxSearchResults={props.maxSearchResults}
         dataSource={props.dataSource}
         dataSourceConfig={dataSourceConfig}
         onChange={props.handleTextFieldChange}
-        value={props.caenCode === null ? '' : props.caenCode}
+        searchText={props.domain === null ? '' : props.domain}
       />
       <br /><br />
     </div>
