@@ -13,32 +13,19 @@ import Help from '../components/Help';
 import Profile from '../components/Profile';
 
 import injectTapEventPlugin from 'react-tap-event-plugin'
-
-import AuthService from '../utils/AuthService';
 injectTapEventPlugin();
-const auth = new AuthService(
-  process.env.REACT_APP_AUTH0_CLIENT_ID,
-  process.env.REACT_APP_AUTH0_DOMAIN
-);
-
-// validate authentication for private routes
-const requireAuth = (nextState, replace) => {
-  if (!auth.isLoggedIn()) {
-    replace({ pathname: '/' });
-  }
-}
 
 const Routes = (props) => (
   <Router {...props}>
-    <Route path="/" component={Main} auth={auth}>
+    <Route path="/" component={Main}>
       <IndexRoute component={HomeContainer} />
       <Route path="despre" component={About} />
-      <Route path="admin" component={AdminContainer} onEnter={requireAuth} />
-      <Route path="admin/intreprinderi" component={EnterprisesContainer} onEnter={requireAuth} />
-      <Route path="admin/inregistrare/:id" component={RegistrationContainer} onEnter={requireAuth} />
-      <Route path="admin/utilizatori" component={UsersContainer} onEnter={requireAuth} />
-      <Route path="admin/profil" component={Profile} onEnter={requireAuth} />
-      <Route path="admin/ajutor" component={Help} onEnter={requireAuth} />
+      <Route path="admin" component={AdminContainer} />
+      <Route path="admin/intreprinderi" component={EnterprisesContainer} />
+      <Route path="admin/inregistrare/:id" component={RegistrationContainer} />
+      <Route path="admin/utilizatori" component={UsersContainer} />
+      <Route path="admin/profil" component={Profile} />
+      <Route path="admin/ajutor" component={Help} />
       <Route path="*" component={NotFound} />
     </Route>
   </Router>

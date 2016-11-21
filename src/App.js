@@ -1,9 +1,7 @@
-// @flow
+
 import React, { PropTypes as T, Component, Element } from 'react'
 import { IndexLink } from 'react-router'
 
-import AuthService from './utils/AuthService'
-import type { UserProfile } from './utils/AuthService'
 import './App.css'
 import logo from '../public/logo-mic.png'
 import Img from './components/Img'
@@ -27,16 +25,6 @@ const muiTheme = getMuiTheme({
     accent1Color: lightBlue900,
   },
 });
-
-type Props = {
-  auth: AuthService,
-  children?: Element<any>,
-  className?: string
-}
-type State = {
-  profile: UserProfile,
-  open: boolean
-}
 
 const styles = {
   containerPublic: {
@@ -62,63 +50,44 @@ class App extends Component {
   static contextTypes = {
     router: T.object
   }
-  props: Props;
-  state: State;
 
-  constructor(props: Props, context: any) {
+  constructor(props, context) {
     super(props, context);
     this.state = {
-      profile: this.props.auth.getProfile(),
       open: true,
+      isLoggedIn: true
     }
-    this.props.auth.on('profile_updated', (newProfile) => {
-      this.setState({ profile: newProfile})
-    });
   }
-  logout() {
-    this.props.auth.logout();
-    this.context.router.push('/');
-    this.setState({profile: {}})
-  }
+
   handleToggleSidebar() {
     this.setState({ open: !this.state.open })
   }
   render(): Element<any> {
-    let children = null;
-    if (this.props.children) {
+      let children = null;
       children = React.cloneElement(this.props.children, {
-        auth: this.props.auth
+        isLoggedIn: this.state.isLoggedIn
       })
-    }
-    let sidebar = null
-    if (this.props.auth.isLoggedIn()) {
-      if (this.state.profile) {
-        sidebar = <div>
-          <Sidebar
-            location={children}
-            profile={this.state.profile}
-            open={this.state.open}/>
-          </div>
-      }
-    }
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
       <div>
           <AppBar
-            onLeftIconButtonTouchTap={this.props.auth.isLoggedIn() ? () => this.setState({
+            onLeftIconButtonTouchTap={this.state.isLoggedIn ? () => this.setState({
               open: !this.state.open
             }) : null}
             title={<IndexLink to="/" className="logo"><Img src={logo} alt="Bine ati venit" /></IndexLink>}
             style={{backgroundColor: '#004990', position: 'fixed'}}
-            iconClassNameLeft={!this.props.auth.isLoggedIn() ? 'hidden' : null }
+            iconClassNameLeft={!this.state.isLoggedIn ? 'hidden' : null }
           />
-        <div style={!this.props.auth.isLoggedIn() ? styles.containerPublic : styles.containerPrivate}>
-          {sidebar}
+        <div style={!this.state.isLoggedIn ? styles.containerPublic : styles.containerPrivate}>
+          <div>
+            <Sidebar
+              open={this.state.open}/>
+            </div>
           <div>
             {children}
           </div>
         </div>
-        <Footer auth={this.props.auth}/>
+        <Footer />
       </div>
       </MuiThemeProvider>
     );
