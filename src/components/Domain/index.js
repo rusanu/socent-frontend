@@ -23,6 +23,7 @@ const Domain = (props: Props) => {
         maxSearchResults={props.maxSearchResults}
         dataSource={props.dataSource}
         dataSourceConfig={dataSourceConfig}
+        openOnFocus={true}
         onChange={props.handleTextFieldChange}
         searchText={props.domain === null ? '' : props.domain}
       />

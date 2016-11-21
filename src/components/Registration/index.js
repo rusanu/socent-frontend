@@ -132,25 +132,25 @@ function RegistrationUI(props) {
 function Registration(props) {
   return (
     <div>
-        {props.isLoading === true
-          ? <RefreshIndicator
-              size={50}
-              left={10}
-              top={0}
-              loadingColor='white'
-              status="loading"
-              style={styles.refresh}
-            />
-          : <RegistrationUI
-              stepIndex={props.stepIndex}
-              enterprise={props.enterprise}
-              caens={props.caens}
-              domains={props.domains}
-              finished={props.finished}
-              handleNext={props.handleNext}
-              handlePrev={props.handlePrev}
-              addCaenComponent={props.addCaenComponent}
-              />
+      {props.isLoading === true
+        ? <RefreshIndicator
+          size={50}
+          left={10}
+          top={0}
+          loadingColor='white'
+          status="loading"
+          style={styles.refresh}
+        />
+        : <RegistrationUI
+          stepIndex={props.stepIndex}
+          enterprise={props.enterprise}
+          caens={props.caens}
+          domains={props.domains}
+          finished={props.finished}
+          handleNext={props.handleNext}
+          handlePrev={props.handlePrev}
+          addCaenComponent={props.addCaenComponent}
+        />
       }
     </div>
   );

@@ -23,6 +23,7 @@ const Caen = (props: Props) => {
         maxSearchResults={props.maxSearchResults}
         dataSource={props.dataSource}
         dataSourceConfig={dataSourceConfig}
+        openOnFocus={true}
         onChange={props.handleTextFieldChange}
         searchText={props.caenCode === null ? '' : props.caenCode}
       />
