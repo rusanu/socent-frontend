@@ -1,7 +1,7 @@
 import React from 'react'
-import { AutoComplete, TextField } from 'material-ui';
+import { AutoComplete } from 'material-ui';
 
-const dataSource = ['Societati cooperative de gradul 1', 'Cooperative de credit, Asociatii', 'Fundatii', 'Case de ajutor reciproc ale salariatilor', 'Case de ajutor reciproc ale pensionarilor', 'Societate agricola', 'Federatii'];
+const dataSource = ['Societati cooperative de gradul 1', 'Cooperative de credit, Asociatii', 'Fundatii', 'Case de ajutor reciproc ale salariatilor', 'Case de ajutor reciproc ale pensionarilor', 'Societate agricola', 'Federatii', 'Uniuni de persoane juridice de tipul...', 'Alte categorii de persoane juridice de tipul...'];
 const Category = (props) => {
   return (
     <div>
@@ -11,18 +11,11 @@ const Category = (props) => {
         listStyle={{width: 'inherit'}}
         floatingLabelText="Categoria"
         openOnFocus={true}
-        filter={AutoComplete.noFilter}
+        filter={AutoComplete.caseInsensitiveFilter}
         dataSource={dataSource}
-      />
-      <TextField
-        hintText="Arhitecti"
-        style={{ marginRight:'4%', width: '48%'}}
-        floatingLabelText="Uniuni de persoane juridice de tipul..."
-      />
-      <TextField
-        hintText="Uniuni"
-        style={{ width: '48%'}}
-        floatingLabelText="Alte categorii de persoane juridice de tipul..."
+        searchText={
+          props.enterprise.enterpriseCategory.description
+        }
       />
     </div>
   );

@@ -6,15 +6,15 @@ import ContentAddCircleOutline from 'material-ui/svg-icons/content/add-circle-ou
 import { lightBlue900 } from 'material-ui/styles/colors'
 
 const Domains = (props) => {
-
+  const { enterprise } = props
   return (
     <div>
       <br />
       <h6>Alege Domeniul Principal</h6>
       <Domain
         maxSearchResults={5}
-        caenCode={props.caenPrimary}
-        dataSource={props.caens}
+        domain={enterprise.socialInterventionDomain.description}
+        dataSource={props.domains}
         name='principal'
         handleTextFieldChange={props.handleTextFieldChange}
         />
@@ -24,17 +24,17 @@ const Domains = (props) => {
         label="Adauga inca un domeniu secundar"
         backgroundColor={lightBlue900}
         labelColor='white'
-        onTouchTap={props.addCaenComponent}
+        //onTouchTap={props.addCaenComponent}
         icon={<ContentAddCircleOutline color='white' />}
       />
-      {props.caenSecondary.map((caen, i) => {
+      {/* {props.caenSecondary.map((caen, i) => {
         return <Domain
           key={`secondary-${i}`}
           caenCode={caen}
           maxSearchResults={5}
           dataSource={props.caens}/>
         })
-      }
+      } */}
     </div>
   );
 }

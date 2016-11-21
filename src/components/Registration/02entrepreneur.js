@@ -12,32 +12,38 @@ if (areIntlLocalesSupported(['ro', 'ro-RO'])) {
 }
 const dataSource = ['Statutul asociatiei Statutul asociatiei', 'Copie buletin', 'Alt document'];
 const Entrepreneur = (props) => {
+  const { entrepreneur } = props.enterprise
   return (
     <div>
       <TextField
         hintText="CNP"
         floatingLabelText="Introduceti codul CNP"
         style={{marginRight:'4%', width: '38%'}}
+        value={entrepreneur.identificationNumber}
       />
       <TextField
         hintText="Nume si Prenume"
         floatingLabelText="Introduceti numele"
         style={{width: '58%'}}
-      /><br /><br/>
+        value={entrepreneur.name}
+      />
       <TextField
         hintText="AA"
         floatingLabelText="Serie"
         style={{marginRight:'4%', width: '10%'}}
+        value={entrepreneur.cardSeries}
       />
       <TextField
         hintText="123456"
         floatingLabelText="Numar"
         style={{marginRight:'4%', width: '22%'}}
+        value={entrepreneur.cardNumber}
       />
       <TextField
         hintText="Organul emitent"
         floatingLabelText="Eliberat de"
         style={{marginRight:'4%', width: '27%'}}
+        value={entrepreneur.issuedBy}
       />
       <DatePicker
         hintText="Alegeti data eliberarii"
@@ -46,13 +52,13 @@ const Entrepreneur = (props) => {
         okLabel="OK"
         cancelLabel="Anulati"
         locale="ro"
-        //value={this.state.controlledDate}
-        //onChange={this.handleChange}
+        value={new Date(entrepreneur.issuedAt)}
       />
       <TextField
         hintText="Director"
         floatingLabelText="In calitate de"
         style={{marginRight:'4%', width: '48%'}}
+        value={entrepreneur.designation}
       />
       <AutoComplete
         style={{width: '48%'}}

@@ -6,7 +6,8 @@ export const APIEndpoints = {
   enterprises: "enterprises",
   public: "public",
   list: "list",
-  industry_classifications: "industry-classifications"
+  industry_classifications: "industry-classifications",
+  social_intervention_domains: "social-intervention-domains"
 };
 export type APIEndpoint = $Keys<typeof APIEndpoints>;
 

@@ -13,7 +13,8 @@ const Address = (props) => {
         textFieldStyle={{width: '100%'}}
         listStyle={{width: '100%'}}
         floatingLabelText="Judetul"
-        filter={AutoComplete.noFilter}
+        filter={AutoComplete.caseInsensitiveFilter}
+        //searchText={}
         openOnFocus={true}
         dataSource={dataSource}
         dataSourceConfig={dataSourceConfig}
