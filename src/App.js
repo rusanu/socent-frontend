@@ -9,6 +9,7 @@ import Img from './components/Img'
 
 import Footer from './layout/Footer'
 import Sidebar from './layout/Sidebar'
+import API from './api/API.js'
 // import Login from './layout/Login'
 // import LoggedIn from './layout/LoggedIn'
 
@@ -57,6 +58,12 @@ class App extends Component {
       open: true,
       isLoggedIn: true
     }
+    this.API = new API();
+    this.API.getLogin().loginUser('<username here>', '<password here>').then(
+      jwt => console.log("App::ctor::then", jwt)
+    ).catch(
+      err => console.log("App::ctor::catch", err)
+    );
   }
 
   handleToggleSidebar() {

@@ -33,11 +33,11 @@ export default class Entity {
   _buildEndpoint(
     endpoint: APIEndpoint,
   ): string {
-    if (process.env.NODE_ENV === 'development') {
+//    if (process.env.NODE_ENV === 'development') {
       return this._baseURI + "/api/" + this._version + "/" + endpoint;
-    } else {
-      return location.protocol + '//' + location.hostname + ':3001/' + endpoint;
-    }
+//    } else {
+//      return location.protocol + '//' + location.hostname + ':3001/' + endpoint;
+//    }
   }
 
   _buildQueryString(
